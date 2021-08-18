@@ -20,20 +20,18 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public Todo getTodoById(@PathVariable int id){
+    public Todo getTodoById(@PathVariable String id){
         return todoService.getById(id);
     }
 
     @PostMapping(value = {"","/"})
     public Todo createNewTodo(@RequestBody Todo todo){
-        if (todoService.save(todo)){
-            return todo;
-        }
-        return null;
+
+        return todoService.save(todo);
     }
 
     @DeleteMapping(value = {"{id}"})
-    public void deleteToto(@PathVariable int id) {
+    public void deleteToto(@PathVariable String id) {
         todoService.delete(id) ;
     }
 }

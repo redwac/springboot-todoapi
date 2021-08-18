@@ -1,5 +1,6 @@
 package com.artuto.springapp.todos;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,34 +10,23 @@ import java.util.List;
 @Service
 public class TodoService {
 
-    private List<Todo> data = new ArrayList<>(Arrays.asList(
-            new Todo(1,"first toto title","first todo description"),
-            new Todo(2,"second toto title","second todo description"),
-            new Todo(3,"third toto title","third s todo description"))
-    ) ;
+    @Autowired
+  private TodoRepository todoRepository;
 
     public List<Todo> findAll() {
-        return data;
+        return todoRepository.findAll();
     }
 
-    public Todo getById(int id) {
-        for (Todo todo : data) {
-            if (todo.getId() == id) {
-                return todo;
-            }
-        }
-        return null;
+    public Todo getById(String id) {
+
+        return todoRepository.findById(id).get();
     }
 
-    public boolean save(Todo todo){
-        return data.add(todo);
+    public Todo save(Todo todo){
+        return todoRepository.insert(todo);
     }
 
-    public void delete(int id){
-        for (Todo todo : data){
-            if(todo.getId()==id){
-                data.remove(todo);
-            }
-        }
+    public void delete(String id){
+        todoRepository.deleteById(id);
     }
 }
