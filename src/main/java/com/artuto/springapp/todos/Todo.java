@@ -1,7 +1,10 @@
 package com.artuto.springapp.todos;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Document(collection = "todos")
 public class Todo {
@@ -9,7 +12,11 @@ public class Todo {
     @Id
     private String id;
 
+    @NotNull(message = "Title is required")
+    @Size(min = 3, message = "Title must be a least then 3 charactere long")
     private String title;
+
+    @NotNull(message = "Description is required")
     private String description;
     private long timestamp;
 
