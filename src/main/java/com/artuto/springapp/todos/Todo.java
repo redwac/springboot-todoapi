@@ -12,8 +12,8 @@ public class Todo {
     @Id
     private String id;
 
-    @NotNull(message = "Title is required")
-    @Size(min = 3, message = "Title must be a least then 3 charactere long")
+    @NotNull(message = "ne doit pas etre null")
+    @Size(min = 3, message = "le nombre de caractere doit etre plus q 3 c")
     private String title;
 
     @NotNull(message = "Description is required")
